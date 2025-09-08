@@ -367,14 +367,14 @@ function shopire_footer_mobile_menu() {
 	$shopire_footer_mm_shop_title  	= get_theme_mod( 'shopire_footer_mm_shop_title','Shop');
 	$shopire_hs_footer_mm_cart  	= get_theme_mod( 'shopire_hs_footer_mm_cart','1');
 	$shopire_footer_mm_cart_icon  	= get_theme_mod( 'shopire_footer_mm_cart_icon','far fa-cart-shopping');
-	$shopire_footer_mm_cart_title  	= get_theme_mod( 'shopire_footer_mm_cart_title','Cart');
+	$shopire_footer_mm_cart_title  	= get_theme_mod( 'shopire_footer_mm_cart_title','Giỏ hàng');
 	$shopire_hs_footer_mm_ma  		= get_theme_mod( 'shopire_hs_footer_mm_ma','1');
 	$shopire_footer_mm_ma_icon  	= get_theme_mod( 'shopire_footer_mm_ma_icon','far fa-user');
 	$shopire_footer_mm_ma_title  	= get_theme_mod( 'shopire_footer_mm_ma_title','My Account');
 	$shopire_hs_footer_mm_wl  		= get_theme_mod( 'shopire_hs_footer_mm_wl','1');
 	$shopire_footer_mm_wl_icon  	= get_theme_mod( 'shopire_footer_mm_wl_icon','far fa-heart');
 	$shopire_footer_mm_wl_title  	= get_theme_mod( 'shopire_footer_mm_wl_title','Wishlist');
-	$shopire_hs_footer_mm_cm  		= get_theme_mod( 'shopire_hs_footer_mm_cm','1');
+	$shopire_hs_footer_mm_cm  		= get_theme_mod( 'shopire_hs_footer_mm_cm','0');
 	$shopire_footer_mm_cm_icon  	= get_theme_mod( 'shopire_footer_mm_cm_icon','fas fa-exchange');
 	$shopire_footer_mm_cm_title  	= get_theme_mod( 'shopire_footer_mm_cm_title','Compare');
 	$shopire_hs_footer_mm_search  	= get_theme_mod( 'shopire_hs_footer_mm_search','1');
