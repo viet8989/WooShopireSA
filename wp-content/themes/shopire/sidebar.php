@@ -6,9 +6,12 @@
  *
  * @package Shopire
  */
-if ( ! is_active_sidebar( 'shopire-sidebar-primary' ) ) {	return; } ?>
-<div id="wf-sidebar" class="wf-col-lg-4 wf-col-md-12 wf-col-12">
-	<div class="wf_widget-area">
-		<?php dynamic_sidebar('shopire-sidebar-primary'); ?>
-	</div>
-</div>
+
+/**
+ * if ( ! is_active_sidebar( 'shopire-sidebar-primary' ) ) {	return; } ?>
+ * <div id="wf-sidebar" class="wf-col-lg-4 wf-col-md-12 wf-col-12">
+ * 	<div class="wf_widget-area">
+ * 		<?php dynamic_sidebar('shopire-sidebar-primary'); ?>
+ * 	</div>
+ * </div>
+ */
