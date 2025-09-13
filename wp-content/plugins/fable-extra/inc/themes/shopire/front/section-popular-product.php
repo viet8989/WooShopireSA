@@ -1,5 +1,5 @@
 <?php  
-$shopire_popular_product_options_hide_show= get_theme_mod('shopire_popular_product_options_hide_show','1'); 
+$shopire_popular_product_options_hide_show= get_theme_mod('shopire_popular_product_options_hide_show','0'); 
 $shopire_popular_product_ttl			= get_theme_mod('shopire_popular_product_ttl','Popular Product');
 $shopire_popular_product_hs_tab			= get_theme_mod('shopire_popular_product_hs_tab','1'); 
 $shopire_popular_product_cat			= get_theme_mod('shopire_popular_product_cat');
