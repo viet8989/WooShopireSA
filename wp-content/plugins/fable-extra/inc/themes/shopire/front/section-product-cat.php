@@ -1,98 +1,152 @@
-<?php  
-$shopire_product_cat_options_hide_show = get_theme_mod('shopire_product_cat_options_hide_show','1'); 
-$shopire_product_cat_ttl	= get_theme_mod('shopire_product_cat_ttl','Popular Categories');
-$shopire_product_cat_btn_lbl= get_theme_mod('shopire_product_cat_btn_lbl','See All Deals');
-$shopire_product_cat_btn_url= get_theme_mod('shopire_product_cat_btn_url','#');
-$shopire_product_cat		= get_theme_mod('shopire_product_cat');
-$shopire_product_cat_column = get_theme_mod('shopire_product_cat_column','6');
-if($shopire_product_cat_options_hide_show=='1'):
-?>	
-<section id="wf_product_category" class="wf_product_category wf_product_category_one wf-py-default front-product-cat">
-	<div class="wf-container">
-		 <?php if ( ! empty( $shopire_product_cat_ttl )  || ! empty( $shopire_product_cat_btn_lbl )) : ?>
-			<div class="wf-row align-items-center wf-mb-5">
-				<div class="wf-col-lg-6 wf-col-md-8">
-					<div class="section-title wf-text-md-left wf-text-center">
-						 <?php if ( ! empty( $shopire_product_cat_ttl )) : ?>
-							<h3 class="title"><?php echo wp_kses_post( $shopire_product_cat_ttl); ?></h3>
-						<?php endif; ?>
-					</div>
-				</div>
-				<div class="wf-col-lg-6 wf-col-md-4">
-					<div class="wf-text-md-right wf-text-center wf-md-0 wf-mt-2">
-						 <?php if (! empty( $shopire_product_cat_btn_lbl )) : ?>
-							<a href="<?php echo esc_url( $shopire_product_cat_btn_url); ?>" class="more-link">
-								<?php echo wp_kses_post( $shopire_product_cat_btn_lbl); ?>
-								<i class="far fa-arrow-right wf-ml-1"></i>
-							</a>
-						<?php endif; ?>
-					</div>
-				</div>
-			</div>
-		<?php endif;	
-			if ( class_exists( 'woocommerce' ) ) {
-			$args                   = array(
-				'post_type' => 'product',
-			);
-			
-			$args['tax_query'] = array(
-				array(
-					'taxonomy' => 'product_cat',
-					'field' => 'slug',
-					'terms' => $shopire_product_cat,
-				),
-			);
-			 if(!empty($shopire_product_cat)):
-			$count = count($shopire_product_cat);
-			if ( $count > 0 ){
-		?>
-			<div class="wf-row wf-g-4">
-			<div class="wf-col-12 wf_owl_carousel owl-theme owl-carousel slider" data-owl-options='{
-				"loop": true,
-				"animateOut": "fadeOut",
-				"animateIn": "fadeIn",
-				"autoplay": true,
-				"autoplayTimeout": 5500,
-				"smartSpeed": 1200,
-				"nav": false,
-				"dots": true,
-				"margin": 0,
-				"responsive": {
-					"0": {
-						"items": 1
-					},
-					"576": {
-						"items": 3
-					},
-					"992": {
-						"items": <?php echo esc_attr($shopire_product_cat_column); ?>
-					}
-				}
-				}'>
-				<?php 
-					foreach ( $shopire_product_cat as $i=>$product_category ) { 
-					$product_cat = get_term_by( 'slug', $product_category, 'product_cat' );
-					$thumbnail_id = get_term_meta( $product_cat->term_id, 'thumbnail_id', true );
-					$image = wp_get_attachment_url( $thumbnail_id );
-				?>
-				<div class="product-category">
-					<div class="category-inner">
-						<div class="category-image">
-							<a href="<?php echo esc_url(get_category_link( $product_cat->term_id )); ?>" aria-label="<?php  echo esc_attr($product_cat->name); ?>">
-								<img src="<?php echo esc_url($image); ?>" alt=""/>
-							</a>
-						</div>
-						<div class="category-mask">
-							<h3 class="title"><?php  echo esc_html($product_cat->name); ?></h3>
-							<div class="count"><a href="#"><?php echo esc_html($product_cat->count);  ?> <?php esc_html_e('products','fable-extra'); ?></a></div>
-						</div>
-						<a href="<?php echo esc_url(get_category_link( $product_cat->term_id )); ?>" class="category-link" aria-label="<?php  echo esc_attr($product_cat->name); ?>"></a>
-					</div>
-				</div>
-				<?php } ?>	
-			</div>
-			<?php } endif; ?>
-		<?php } ?>
-	</div>
+<section id="wf_product_categories_wrapper" class="wf_product_categories_wrapper">
+    <div class="wf-container">
+
+        <?php
+        // Define your popular categories array
+        // In a real-world scenario, you might fetch this dynamically
+        $popular_categories = array(
+            array(
+                'id' => 15,
+                'name' => 'Dụng cụ cầm tay',
+                'slug' => 'dung-cu-cam-tay' // Add slug for the "See all" link
+            ),
+            array(
+                'id' => 365,
+                'name' => 'Dụng cụ dùng điện',
+                'slug' => 'dung-cu-dien-cam-tay'
+            ),
+            array(
+                'id' => 391,
+                'name' => 'Dụng cụ dùng pin',
+                'slug' => 'dung-cu-dung-pin'
+            ),
+            array(
+                'id' => 400,
+                'name' => 'Dụng cụ khí nén',
+                'slug' => 'dung-cu-khi-nen'
+            ),
+            array(
+                'id' => 401,
+                'name' => 'Dụng cụ cắt gọt cơ khí',
+                'slug' => 'dung-cu-cat-got-co-khi'
+            ),
+            array(
+                'id' => 429,
+                'name' => 'Dụng cụ đo chính xác',
+                'slug' => 'dung-cu-do-chinh-xac'
+            ),
+            array(
+                'id' => 451,
+                'name' => 'Dụng cụ đo điện',
+                'slug' => 'dung-cu-do-dien'
+            ),
+            array(
+                'id' => 462,
+                'name' => 'Thiết bị thủy lực',
+                'slug' => 'thiet-bi-thuy-luc'
+            ),
+            array(
+                'id' => 475,
+                'name' => 'Thiết bị nâng hạ',
+                'slug' => 'thiet-bi-nang-ha'
+            ),
+            array(
+                'id' => 490,
+                'name' => 'Thiết bị ngành hàn',
+                'slug' => 'thiet-bi-nganh-han'
+            ),
+            array(
+                'id' => 507,
+                'name' => 'Thiết bị phun sơn',
+                'slug' => 'thiet-bi-phun-son'
+            ),
+            array(
+                'id' => 521,
+                'name' => 'Keo dán công nghiệp',
+                'slug' => 'keo-dan-cong-nghiep'
+            )
+        );
+
+        if ( class_exists( 'woocommerce' ) ) {
+            // Loop through each category
+            foreach ( $popular_categories as $category ) {
+                // Ensure category ID and name are valid
+                if ( ! isset( $category['id'] ) || ! isset( $category['name'] ) || ! isset( $category['slug'] ) ) {
+                    continue; // Skip if essential data is missing
+                }
+
+                $term_id = $category['id'];
+                $category_name = $category['name'];
+                $category_slug = $category['slug'];
+                $see_all_url = home_url( '/danh-muc-san-pham/' . $category_slug . '/' ); // Dynamic URL
+                ?>
+
+                <section id="wf_product_category_<?php echo esc_attr( $term_id ); ?>" class="wf_product_category wf_product_category_one wf-py-default front-product-cat wf-mb-5">
+                    <div class="wf-container">
+                        <div class="wf-row align-items-center wf-mb-5" style="background-color: lightsteelblue;">
+                            <div class="wf-col-lg-6 wf-col-md-8">
+                                <div class="section-title wf-text-md-left wf-text-center">
+                                    <h3 class="title"><?php echo esc_html( $category_name ); ?></h3>
+                                </div>
+                            </div>
+                            <div class="wf-col-lg-6 wf-col-md-4">
+                                <div class="wf-text-md-right wf-text-center wf-md-0 wf-mt-2">
+                                    <a href="<?php echo esc_url( $see_all_url ); ?>" class="more-link">
+                                        Xem tất cả
+                                        <i class="far fa-arrow-right wf-ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
+                        $args = array(
+                            'post_type'      => 'product',
+                            'posts_per_page' => 8, // Number of products per category
+                            'tax_query'      => array(
+                                array(
+                                    'taxonomy' => 'product_cat',
+                                    'field'    => 'term_id',
+                                    'terms'    => $term_id,
+                                ),
+                            ),
+                            // Optional: Order products by popularity or date
+                            // 'meta_key' => 'total_sales',
+                            // 'orderby'  => 'meta_value_num',
+                            // 'order'    => 'DESC',
+                        );
+
+                        $loop = new WP_Query( $args );
+
+                        if ( $loop->have_posts() ) : ?>
+                            <div class="wf-row wf-g-4">
+                                <div class="wf-col-lg-12">
+                                    <div class="woocommerce columns-4">
+                                        <ul class="products columns-4">
+                                            <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                                                <?php
+                                                // Load the product template. Ensure 'woocommerce/content-product.php' exists in your theme or child theme.
+                                                wc_get_template_part( 'content', 'product' );
+                                                ?>
+                                            <?php endwhile; ?>
+                                            <?php wp_reset_postdata(); ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <p class="wf-text-center"><?php esc_html_e( 'No products found in this category.', 'your-text-domain' ); ?></p>
+                        <?php endif; ?>
+                    </div>
+                </section>
+
+                <?php
+            } // End foreach loop
+        } else {
+            // Fallback message if WooCommerce is not active
+            echo '<p class="wf-text-center">' . esc_html__( 'WooCommerce is not active. Please install and activate it to display products.', 'your-text-domain' ) . '</p>';
+        }
+        ?>
+
+    </div>
 </section>
-<?php endif; ?>
