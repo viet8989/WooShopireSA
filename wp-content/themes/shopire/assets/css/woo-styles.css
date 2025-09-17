@@ -670,6 +670,10 @@ ins .woocommerce-Price-amount.amount bdi {
     line-height: 1.25;
 }
 
+.woocommerce ul.products li.product .product-single .product-content h3 {
+    min-height: 40px;
+}
+
 .woocommerce ul.products li.product .product-single .product-content-outer {
     text-align: center;
     position: relative;
