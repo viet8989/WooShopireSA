@@ -157,7 +157,6 @@ add_action( 'wp_enqueue_scripts', 'fable_extra_product_search_scripts_styles' );
 							SELECT post_id FROM $wpdb->postmeta
 							WHERE meta_key = '_sku' AND meta_value LIKE %s
 						)
-						OR p.post_content LIKE %s
 						OR p.post_title LIKE %s
 					)
 					ORDER BY t.name ASC, p.post_date DESC
@@ -173,7 +172,6 @@ add_action( 'wp_enqueue_scripts', 'fable_extra_product_search_scripts_styles' );
 					AND p.post_type = 'product'
 					AND (
 						(m.meta_key = '_sku' AND m.meta_value LIKE %s)
-						OR (p.post_content LIKE %s)
 						OR (p.post_title LIKE %s)
 					)
 					ORDER BY p.post_date DESC
