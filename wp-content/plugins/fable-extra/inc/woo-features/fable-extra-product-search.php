@@ -198,46 +198,49 @@ add_action( 'wp_enqueue_scripts', 'fable_extra_product_search_scripts_styles' );
 					$rating = get_post_meta($result->ID, '_wc_average_rating', true);
 
 					$output .= '<li>';
-					$output .= '<div class="fable_extra_result_link">';
+					$output .= '<div class="fable_extra_result_link" onclick="window.location=\'' . esc_url(get_the_permalink($result->ID)) . '\'">';
 					$output .= '<div class="product-image"><img src="' . esc_url(get_the_post_thumbnail_url($result->ID, 'thumbnail')) . '"></div>';
 					$output .= '<div class="product-data">';
 					$output .= '<span class="product-title">' . esc_html($result->post_title) . '</span>';
 
-					if ($rating) {
-						for ($i = 0; $i < floor($rating); $i++) {
-							$output .= '<div class="product-ratings"><i class="fa fa-star"></i></div>';
-						}
-					}
+					// if ($rating) {
+					// 	for ($i = 0; $i < floor($rating); $i++) {
+					// 		$output .= '<div class="product-ratings"><i class="fa fa-star"></i></div>';
+					// 	}
+					// }
 
 					$output .= '</div>';
-					$output .= '<div class="price-stock">';
+					// $output .= '<div class="price-stock">';
 
-					if (!empty($stock)) {
-						$color = $stock === 'instock' ? '#84c224' : '#ff0a0a';
-						$output .= '<div class="product-stock" style="background:' . esc_attr($color) . ';">' . esc_html($stock) . '</div>';
-					}
+					// if (!empty($stock)) {
+					// 	$color = $stock === 'instock' ? '#84c224' : '#ff0a0a';
+					// 	$output .= '<div class="product-stock" style="background:' . esc_attr($color) . ';">' . esc_html($stock) . '</div>';
+					// }
 
-					$output .= '</div>';
+					// $output .= '</div>';
 					$output .= '<div class="product-price">';
-					if (!empty($price)) {
-						$output .= '<span class="regular-price">' . esc_html($price) . '</span>';
+					if (!empty($price) || !empty($price_sale)) {
 						if (!empty($price_sale)) {
-							$output .= '<span class="sale-price">' . esc_html($price_sale) . '</span>';
+							$output .= '<span class="sale-price" style="color: red">' . number_format((float)$price_sale, 0, '.', ',') . '</span>';
+						} else {
+							$output .= '<span class="sale-price" style="color: red">' . number_format((float)$price_sale, 0, '.', ',') . '</span>';
 						}
 						$output .= $currency;
+					} else {
+						$output .= '<span class="sale-price" style="color: red">Liên hệ</span>';
 					}
 					$output .= '</div>';
 
-					$output .= '<div class="product-checkout">';
-					$output .= '<a href="' . esc_url(wc_get_checkout_url()) . '"><i class="fa fa-truck"></i></a>';
-					$output .= '</div>';
+					// $output .= '<div class="product-checkout">';
+					// $output .= '<a href="' . esc_url(wc_get_checkout_url()) . '"><i class="fa fa-truck"></i></a>';
+					// $output .= '</div>';
 
-					$output .= '<form class="cart" method="post" enctype="multipart/form-data">
-						<div class="quantity">
-							<input type="number" step="1" min="1" name="quantity" value="1" title="Quantity" class="input-text qty text" size="4">
-						</div>
-						<button type="submit" data-quantity="1" data-product_id="' . esc_attr($result->ID) . '" class="button alt ajax_add_to_cart add_to_cart_button product_type_simple"><i class="fa fa-shopping-cart wf-mr-2"></i>Add to cart</button>
-					</form>';
+					// $output .= '<form class="cart" method="post" enctype="multipart/form-data">
+					// 	<div class="quantity">
+					// 		<input type="number" step="1" min="1" name="quantity" value="1" title="Quantity" class="input-text qty text" size="4">
+					// 	</div>
+					// 	<button type="submit" data-quantity="1" data-product_id="' . esc_attr($result->ID) . '" class="button alt ajax_add_to_cart add_to_cart_button product_type_simple"><i class="fa fa-shopping-cart wf-mr-2"></i>Add to cart</button>
+					// </form>';
 
 					$output .= '</div></li>';
 				}

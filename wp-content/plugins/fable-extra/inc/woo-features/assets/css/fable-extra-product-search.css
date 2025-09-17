@@ -70,6 +70,12 @@
     height: 100%;
 }
 
+.search-results .fable_extra_result_link:hover {
+  background-color: #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .search-results .product-action {
     margin: inherit;
 }
