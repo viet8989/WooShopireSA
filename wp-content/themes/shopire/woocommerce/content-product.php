@@ -82,16 +82,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 			<div class="product-content-outer">
 				<div class="product-content">
 					<h3><a href="<?php echo esc_url(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
-					<?php 
-					$product_instance = wc_get_product($product);
-					echo $product_instance->get_short_description(); 
-					?>
-					<!--div class="price"-->
 					<?php  
 						do_action( 'woocommerce_after_shop_loop_item_title' ); 
 					?>
-					<!--/div-->
-					<div class="pro-rating"></div>
 				</div>
 				<div class="product-action">
 					<?php
