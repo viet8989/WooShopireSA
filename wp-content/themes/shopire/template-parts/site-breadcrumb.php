@@ -1,5 +1,5 @@
 <?php 
-$shopire_hs_site_breadcrumb = get_theme_mod('shopire_hs_site_breadcrumb','1');
+$shopire_hs_site_breadcrumb = get_theme_mod('shopire_hs_site_breadcrumb','0');
 $shopire_breadcrumb_type    = get_theme_mod('shopire_breadcrumb_type','theme');
 if($shopire_hs_site_breadcrumb == '1'):	
 ?>
