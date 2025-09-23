@@ -7756,7 +7756,7 @@ button.wf_navbar-sidebar-toggle,
 }
 
 .product-categories .wf_navbar-nav .wf_navbar-mainmenu>li a {
-    line-height: 4.9rem;
+    line-height: 3.9rem;
     padding: 0 18px;
     transform-origin: 0 0;
     background-color: #fff;
@@ -7808,6 +7808,17 @@ button.wf_navbar-sidebar-toggle,
     display: list-item;
     visibility: visible;
     opacity: 1;
+    width: 230px;
+    max-height: 47.9rem;
+    column-count: 1;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-gap: 1px;
+    column-rule: 1px solid #ddd;
+}
+
+.product-categories .wf_navbar-nav .wf_navbar-mainmenu .menu-item:focus-within>.dropdown-menu li {
+    break-inside: avoid-column;
 }
 
 .product-categories .product-categories-more-btn {

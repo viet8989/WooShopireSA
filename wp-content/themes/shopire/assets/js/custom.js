@@ -203,10 +203,11 @@
     // Categories More BTN
     function initializeCategoryMenu() {
         var $productCategoryMenu = $('.product-categories .wf_navbar-nav .wf_navbar-mainmenu');
-        // Check if menu items exceed 8; if so, add "More" button
-        if ($productCategoryMenu.children().length >= 8) {
-            $productCategoryMenu.append('<li class="menu-item more"><button type="button" class="product-categories-more-btn"><i class="fa fa-plus"></i> <span>More Category</span></button></li>');
-            $productCategoryMenu.children("li:not(.more)").slice(0, 8).show();
+        // Check if menu items exceed 9; if so, add "More" button
+        if ($productCategoryMenu.children().length >= 9) {
+            $productCategoryMenu.append('<li class="menu-item more"><button type="button" class="product-categories-more-btn active"><i class="fa fa-plus"></i><span>Xem thêm Danh Mục</span></button></li>');
+            // $productCategoryMenu.children("li:not(.more)").slice(0, 9).show();
+            $productCategoryMenu.children("li:not(.more)").slice(9).slideToggle(200).toggleClass('actived', true);
 
             // Toggle visibility of additional categories on button click
             $(".product-categories-more-btn").on('click', function () {
@@ -215,7 +216,7 @@
                 $(this).toggleClass("active");
                 $(this).find('i').toggleClass('fa-plus fa-minus');
 
-                $productCategoryMenu.children("li:not(.more)").slice(8).slideToggle(200).toggleClass('actived', !isActive);
+                $productCategoryMenu.children("li:not(.more)").slice(9).slideToggle(200).toggleClass('actived', !isActive);
             });
         }
     }
@@ -226,6 +227,41 @@
         var categoriesWidth = $categories.outerWidth();
         return categoriesWidth ? `calc(100% - ${categoriesWidth}px)` : "100%";
     }
+
+    function positionDropdowns() {
+        // This function will check and position the dropdowns
+        // It's called from other events to ensure it runs at the right time
+        $('.wf_navbar-mainmenu .menu-item').each(function() {
+        const dropdownMenu = $(this).find('.dropdown-menu');
+
+        // Only run the logic if the dropdown menu is actually visible
+        // This is the key change from the previous code
+        if (dropdownMenu.is(':visible')) {
+            const viewportHeight = $(window).height();
+            const dropdownBottom = dropdownMenu.offset().top + dropdownMenu.outerHeight();
+            const bottomSpace = viewportHeight - dropdownBottom;
+            
+            console.log('Dropdown bottom space:', bottomSpace);
+            if (bottomSpace < 20) {
+                // $(this).addClass('dropup-menu');
+                // Slowly move the dropdown up until it bottom is within the viewport
+                let newTop = dropdownMenu.position().top;
+                while (newTop > 0 && (dropdownMenu.offset().top + dropdownMenu.outerHeight() > viewportHeight)) {
+                    newTop -= 10; // Move up by 10px each iteration
+                    dropdownMenu.css('top', newTop + 'px');
+                }
+            } else {
+                // $(this).removeClass('dropup-menu');
+            }
+        }
+        });
+    }
+
+    // 1. Add event listeners to the menu items
+    // This is a more robust way to handle both hover and focus
+    $('.wf_navbar-mainmenu .menu-item').on('mouseenter focusin', function() {
+        positionDropdowns();
+    });
 
     // Function to handle resizing logic
     function handleResize() {
@@ -246,6 +282,7 @@
             } else {
                 $nav.addClass('closed').hide();
             }
+            positionDropdowns();
         }
 
         // Adjust slider width
@@ -356,7 +393,7 @@
             initUpdateProgressBar();
             initLightbox();
             initTabContent();
-            initializeCategoryMenu();
+            // initializeCategoryMenu();
             handleResize();
         });
     }
