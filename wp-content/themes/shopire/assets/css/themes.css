@@ -8029,7 +8029,7 @@ button.wf_navbar-search-toggle:focus {
 }
 
 .header-search-form input.header-search-input {
-    width: 70%;
+    width: 100%;
     display: inline-block;
     float: left;
     border-radius: 0;

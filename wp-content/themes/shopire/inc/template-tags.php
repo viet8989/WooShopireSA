@@ -875,7 +875,7 @@ if ( ! function_exists( 'shopire_hdr_product_search' ) ) {
 			<div class="header-search-form product-search">
 				<form name="product-search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
 					<div class="search-wrapper">
-						<input type="search" name="s" class="search header-search-input" placeholder="<?php esc_attr_e( 'Search for product...', 'shopire' ); ?>" value="">
+						<input type="search" name="s" class="search header-search-input" placeholder="<?php esc_attr_e( 'Tìm kiếm theo tên sản phẩm, SKU...', 'shopire' ); ?>" value="">
 						<?php //echo file_get_contents(SHOPIRE_PARENT_INC_URI . '/shopire-woocommerce/assets/images/loading.svg'); ?>
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 471.701 471.701">
 							<path d="M409.6,0c-9.426,0-17.067,7.641-17.067,17.067v62.344C304.667-5.656,164.478-3.386,79.411,84.479
@@ -891,15 +891,6 @@ if ( ! function_exists( 'shopire_hdr_product_search' ) ) {
 						</svg>
 
 					</div>
-					<?php $categories = fable_extra_get_product_categories_hierarchy(); ?>
-					<?php if ($categories): ?>
-					<div class="header-search-select-wrapper">
-						<select name="category" class="category header-search-select">
-							<option class="default" value=""><?php echo esc_html__( 'Category', 'shopire' ); ?></option>
-							<?php fable_extra_list_product_taxonomy_hierarchy_no_instance( $categories); ?>
-						</select>
-					</div>
-					<?php endif ?>
 					<input type="hidden" name="post_type" value="product" />
 					<button class="header-search-button" type="submit"><i class="fa fa-search"></i></button>
 				</form>
