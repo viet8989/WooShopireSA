@@ -1919,6 +1919,7 @@ a.save-title-form {
 }
 
 .woocommerce div.product .woocommerce-tabs .panel h2 {
+    display: none;
     font-size: 20px;
     margin-bottom: 18px;
 }
