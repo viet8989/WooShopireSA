@@ -13,7 +13,7 @@
  */
 
 get_header();
-$shopire_default_pg_sidebar_option= get_theme_mod('shopire_default_pg_sidebar_option', 'right_sidebar'); 
+$shopire_default_pg_sidebar_option= get_theme_mod('shopire_default_pg_sidebar_option', 'no_sidebar'); 
 ?>
 <section class="wf_posts wf-py-default">
 	<div class="wf-container">
